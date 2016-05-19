@@ -1,6 +1,6 @@
 
 body{
-	font-family: 'Roboto', sans-serif;
+font-family: 'Libre Baskerville', serif;
   background-image:url ("https://upload.wikimedia.org/wikipedia/en/b/be/HX-21_blackjack_logo_New.JPG")
 	background-color: grey;
 	color:red;
@@ -14,7 +14,7 @@ body{
 
 .container h1{
 	text-align:center;
-	color:green;
+	color:black;
 	font-size: 32px;
 	margin: 0 auto;
 }
