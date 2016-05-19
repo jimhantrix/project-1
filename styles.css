@@ -1,0 +1,53 @@
+
+body{
+	font-family: 'Roboto', sans-serif;
+  background-image:url ("https://upload.wikimedia.org/wikipedia/en/b/be/HX-21_blackjack_logo_New.JPG")
+	background-color: grey;
+	color:red;
+}
+.container{
+	width:100px;
+	margin:10px auto;
+	padding: 10px;
+	width:100%;
+}
+
+.container h1{
+	text-align:center;
+	color:green;
+	font-size: 32px;
+	margin: 0 auto;
+}
+
+  #dealerMove{
+    width:75%;
+    background:grey;
+    padding:20px;
+    margin:15px auto;
+    text-align: center;
+    height:300px;
+    border-radius: 6px;
+    border: 2px solid black;
+    box-shadow: 8px 8px 4px grey;
+    color:red;
+    }
+
+  #playerMove{
+    width:75%;
+    background:grey;
+    padding:20px;
+    margin:15px auto;
+    text-align: center;
+    height:300px;
+    border-radius: 6px;
+    border: 2px solid black;
+    box-shadow: 8px 8px 4px grey;
+    color: red;
+    }
+
+
+}
+
+h1{
+  text-align: center;
+}
