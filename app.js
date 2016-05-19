@@ -87,6 +87,9 @@ function game() {
         player1Card2.innerHTML = players[0].hand[1];
         var dealerCard1 = document.getElementById("dealerC1");
         dealerCard1.innerHTML = players[1].hand[0];
+        var dealerCard1 = document.getElementById("dealerC2").display="block";
+        // document.getElementById("dealerC2").style.display="none";
+        dealerCard1.innerHTML = players[0].hand[1];
     })
 
 
