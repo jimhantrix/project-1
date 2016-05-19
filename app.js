@@ -81,19 +81,24 @@ function game() {
 
     players.forEach(function(player){
         console.log(players.hand);
-        var player1Card1 = document.getElementById("playerC1");
-        player1Card1.innerHTML = players[0].hand[0];
-        var player1Card2 = document.getElementById("playerC2");
-        player1Card2.innerHTML = players[0].hand[1];
-        var dealerCard1 = document.getElementById("dealerC1");
-        dealerCard1.innerHTML = players[1].hand[0];
-        var dealerCard1 = document.getElementById("dealerC2").display="block";
+        var player1Card1 = $("#playerC1");
+        player1Card1.html(players[0].hand[0]);
+        var player1Card2 = $("#playerC2");
+        player1Card2.html(players[0].hand[1]);
+        var dealerCard1 = $("#dealerC1");
+        dealerCard1.html(players[1].hand[0]);
+        var dealerCard2 = $("#dealerC2").hide();
+        dealerCard2.html(players[1].hand[1]);
+
         // document.getElementById("dealerC2").style.display="none";
-        dealerCard1.innerHTML = players[0].hand[1];
     })
 
 
     } else {
     alert("Uh Oh! There can't be a poker game without any players.");
   }
+}
+
+function stay() {
+  $("#dealerC2").show()
 }
