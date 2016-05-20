@@ -6,45 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link  rel ="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pepyaka-font.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="app.js"></script>
 </head>
 <body>
-
-
-
-  <div class="container">
-  <h1>Black Jack</h1>
+<div class="container">
+  <h1><span class="pepyaka smooth"><span class="pep2">B</span><span class="pep0">l</span><span class="pep5">a</span><span class="pep0">c</span><span class="pep1">k</span><span class="pep6">&nbsp;</span><span class="pep5">J</span><span class="pep1">a</span><span class="pep4">c</span><span class="pep1">k</span></span></h1>
 </div>
-
-
-              <div id="dealerMove">
-                <h2>DealerMove</h2>
-              <div id="dealerC1" class="board">
-                <span>Deck 1</span>
-              </div>
-              <div id="dealerC2" class="board">
-                <span>Deck 2</span>
-              </div>
-
-            </div>
-
-
-            <div id="playerMove">
-              <h3>PlayerMove</h3>
-            <div id="playerC1" class="board">
-              <span>Deck 3</span>
-              </div>
-
-            <div id="playerC2" class="board">
-              <span>Deck 4</span>
-            </div>
-          </div>
-
+<div id="dealerMove">
+  <h2>DealerMove</h2>
+  <div id="dealerC1" class="board">
+    <span>card1</span>
 </div>
-  <div class="container">
-    <div id="message" class="message">
-  </div>
-<button onclick="stay()">Stay</button> 
+    <div id="dealerC2" class="board">
+      <span>card2</span>
+</div>
+</div>
+<div id="playerMove">
+    <h3>PlayerMove</h3>
+<div id="playerC1" class="board">
+  <span>card3</span>
+</div>
+<div id="playerC2" class="board">
+  <span>card4</span>
+</div>
+<div id="playerC3" class="board">
+  <span id="hitbutton">Hit</span>
+</div>
+</div>
+</div>
+    <div class="container">
+      <div id="message" class="message">
+</div>
+  <button onclick="stay()">Stay</button>
+
 </body>
 </html>

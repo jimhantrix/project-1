@@ -38,18 +38,18 @@ function game() {
     var players = [];
 
 
-    while(players.length <= 2) {
+    while(true) {
       var name = prompt('Please enter the next player\'s name.' +
           '\nIf there are no more players just press enter.');
 
-      if(String(name).length === 0)
-          break;
-
-
+      if(String(name).length === 0) {
+        break;
+      }
+      // console.log('pushing player with name', name);
       players.push(Player(name));
     }
 
-    // console.log(players);
+    //  console.log(players);
 
     return players;
 
@@ -64,41 +64,161 @@ function game() {
   function deal(players, deck) {
     players.forEach(function(player) {
       for(var c = 0; c < 2; c++) {
-        player.hand.push(deck.cards[Math.floor(Math.random() * deck.cards.length)]);
+        var card = deck.cards.splice(Math.floor(Math.random() * deck.cards.length),1);
+        console.log(deck.cards.length);
+        player.hand.push(card[0]);
       }
 
     });
-    // console.log(players);
+
+   for (var c = 0; c < 2; c++) {
+      var card = deck.cards.splice(Math.floor(Math.random() * deck.cards.length),1);
+      dealer.hand.push(card[0]);
+
+    }
+    console.log(players,dealer);
+
+  }
+
+  function addElement(tag, id, elemClass) {
+    var elem = document.createElement(tag);
+
+    if('undefined' !== typeof id) {
+      elem.id = id;
+    }
+
+    if('undefined' !== elemClass) {
+      elem.setAttribute('class', elemClass);
+    }
+
+    return elem;
   }
 
   var deck = buildDeck(),
-    players = getPlayers();
+    players = getPlayers(),
+    dealer = Player("dealer");
+
+
+  hitListener();
 
   if(players.length > 0) {
     deal(players, deck);
 
-    console.log(players);
+    players.forEach(function(player, i) {
+      player.hand.forEach(function(card, i) {
+        if(i === 0) {
+          var elem = $('#playerC1');
+        }
+        else {
+          var elem = $('#playerC2');
+        }
+        elem.html(card);
+      });
+        // console.log(players.hand);
+        // var player1Card1 = $("#playerC1");
+        // player1Card1.html(players[0].hand[0]);
+        // var player1Card2 = $("#playerC2");
+        // player1Card2.html(players[0].hand[1]);
+        // var dealerCard1 = $("#dealerC1");
+        // dealerCard1.html(players[1].hand[0]);
+        // var dealerCard2 = $("#dealerC2").hide();
+        // dealerCard2.html(players[1].hand[1]);
+    });
+    dealer.hand.forEach(function(card, i) {
+      if(i === 0){
+        var elem =$("#dealerC1");
+      }
+      else{
+        var elem = $("#dealerC2");
+      }
 
-    players.forEach(function(player){
-        console.log(players.hand);
-        var player1Card1 = $("#playerC1");
-        player1Card1.html(players[0].hand[0]);
-        var player1Card2 = $("#playerC2");
-        player1Card2.html(players[0].hand[1]);
-        var dealerCard1 = $("#dealerC1");
-        dealerCard1.html(players[1].hand[0]);
-        var dealerCard2 = $("#dealerC2").hide();
-        dealerCard2.html(players[1].hand[1]);
-
-        // document.getElementById("dealerC2").style.display="none";
-    })
-
-
-    } else {
+      if(i === 0){
+        elem.html(card);
+      }
+      console.log(elem,card);
+    });
+      console.log(dealer);
+      }
+    else {
     alert("Uh Oh! There can't be a poker game without any players.");
+    }
+
+  function hitListener() {
+    $("#hitbutton").on("click", function() {
+      hit(players[0]);
+
+      // manipulate players hand by 1
+      // var player1Card3 = $("");
+      // player1Card2.html(players[0].hand[2]);
+      // var dealerCard3 = $("#hit");
+      // hit(players[0]);
+      //  to check if that player busts
+
+      // if they bust end the game
+    });
+  }
+  function hit(player){
+    // value of player's hand
+    var card = deck.cards.splice(Math.floor(Math.random() * deck.cards.length),1);
+    console.log('going to hit player', player, 'with card', card);
+    console.log('current deck cards are', deck.cards);
+    // then get a new card and push it into the player's hand
+    player.hand.push(card);
+
+    // Add the card to the dom
+    var div = addElement('div', 'playerC4', 'board'),
+      span = addElement('span');
+
+    span.innerHTML = card;
+
+    div.appendChild(span);
+
+    var pMove = document.getElementById('playerMove');
+
+    pMove.appendChild(div);
+
+    var card =deck.cards.splice(Math.floor(Math.random() * deck.cards.length),1);
+
+    var div = addElement('div','Dealerc3','board'),
+
+      span = addElement('span');
+
+    span.innerHTML = card;
+
+    div.appendChild(span);
+
+    var pMove = document.getElementById('dealerMove');
+
+    pMove.appendChild(div);
+
+    winner(player,dealer);
+
+    // then add the values of all of his cards to see if its > 21
+
   }
 }
 
-function stay() {
-  $("#dealerC2").show()
+    function stay() {
+    $("#dealerC2").show()
+  }
+
+  function winner(player,dealer){
+    var pTotal = total(player.hand);
+    
+
+
+    var dTotal = total(dealer.hand);
+
+    console.log(pTotal,dTotal);
+  }
+
+  function total(hand) {
+      return hand.reduce(function(p, n) {
+   return p + n;
+  }, 0);
 }
+  }
+  else
+});
+
+  }
