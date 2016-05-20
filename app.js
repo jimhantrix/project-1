@@ -3,7 +3,7 @@ $(document).ready(function() {
   game();
 
 });
-
+//Game start building a deck
 function game() {
   function buildDeck() {
     var faceCards = {
@@ -34,6 +34,7 @@ function game() {
 
     return deck;
   }
+  //prompt for player names
   function getPlayers() {
     var players = [];
 
@@ -54,6 +55,7 @@ function game() {
     return players;
 
   }
+  //object, of the player name
   function Player(name) {
     return {
       name: name,
@@ -61,6 +63,7 @@ function game() {
       score: 0
     }
   }
+  // deal
   function deal(players, deck) {
     players.forEach(function(player) {
       for(var c = 0; c < 2; c++) {
@@ -79,7 +82,7 @@ function game() {
     console.log(players,dealer);
 
   }
-
+  //Creating Dom elements
   function addElement(tag, id, elemClass) {
     var elem = document.createElement(tag);
 
@@ -98,7 +101,7 @@ function game() {
     players = getPlayers(),
     dealer = Player("dealer");
 
-
+//Getting the winner
   hitListener();
 
   if(players.length > 0) {
@@ -142,7 +145,7 @@ function game() {
     else {
     alert("Uh Oh! There can't be a poker game without any players.");
     }
-
+//creating an event listener
   function hitListener() {
     $("#hitbutton").on("click", function() {
       hit(players[0]);
@@ -157,7 +160,8 @@ function game() {
       // if they bust end the game
     });
   }
-  function hit(player){
+  //
+  function hit(player) {
     // value of player's hand
     var card = deck.cards.splice(Math.floor(Math.random() * deck.cards.length),1);
     console.log('going to hit player', player, 'with card', card);
@@ -177,7 +181,7 @@ function game() {
 
     pMove.appendChild(div);
 
-    var card =deck.cards.splice(Math.floor(Math.random() * deck.cards.length),1);
+    var card = deck.cards.splice(Math.floor(Math.random() * deck.cards.length),1);
 
     var div = addElement('div','Dealerc3','board'),
 
@@ -193,32 +197,62 @@ function game() {
 
     winner(player,dealer);
 
-    // then add the values of all of his cards to see if its > 21
+    // adding the values of all of his cards to see if its > 21
 
   }
-}
 
-    function stay() {
+
+  function stay() {
     $("#dealerC2").show()
   }
 
-  function winner(player,dealer){
+  function winner(player,dealer) {
     var pTotal = total(player.hand);
-    
-
 
     var dTotal = total(dealer.hand);
 
-    console.log(pTotal,dTotal);
-  }
+    if(pTotal > 21){
+      alert("Dealer wins");
+    }
+    else if(dTotal > 21 ){
+      alert("Player Wins");
+    }
+    else if(pTotal < dTotal){
+      alert("Dealer Wins");
+    }
+    else if (pTotal === dTotal){
+      alert("Tie");
+    }
+    else {
+      aler("Player Wins")
+    }
 
+    console.log("Total of ", pTotal, dTotal);
+  }
   function total(hand) {
-      return hand.reduce(function(p, n) {
-   return p + n;
-  }, 0);
-}
+   return hand.reduce(function(p, n) {
+     return getVal(p, p) + getVal(n, p);
+   }, 0);
   }
-  else
-});
+  //getting value of player and dealer and the assigning face cards
+  function getVal(card, curTot) {
+    if('string' === typeof card) {
+     if('A' === card) {
+       if(curTot + 11 > 21) {
+         return 1;
+       }
+       else {
+         return 11;
+       }
+     }
+     else {
+       return 10;
+     }
+   }
+   else {
+     return Number(card);
+   }
+  }
 
-  }
+
+}
