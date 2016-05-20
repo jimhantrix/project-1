@@ -224,35 +224,59 @@ function game() {
       alert("Tie");
     }
     else {
-      aler("Player Wins")
+      alert("Player Wins")
     }
 
     console.log("Total of ", pTotal, dTotal);
   }
-  function total(hand) {
-   return hand.reduce(function(p, n) {
-     return getVal(p, p) + getVal(n, p);
-   }, 0);
-  }
-  //getting value of player and dealer and the assigning face cards
-  function getVal(card, curTot) {
-    if('string' === typeof card) {
-     if('A' === card) {
-       if(curTot + 11 > 21) {
-         return 1;
+
+  function getVal(card, curTot, hand, isMin) {
+ if('string' === typeof card) {
+   if('A' === card) {
+     if(curTot + 11 > 21 || true === isMin) {
+       if(hand.indexOf('A') > -1) {
+         return getVal(card, curTot, hand, true);
        }
-       else {
-         return 11;
-       }
+       return 1;
      }
      else {
-       return 10;
+       return 11;
      }
    }
    else {
-     return Number(card);
+     return 10;
    }
-  }
+ }
+ else {
+   return Number(card);
+ }
+}
+function total(hand) {
+ return hand.reduce(function(p, n) {
+   return getVal(p, p, hand) + getVal(n, p, hand);
+ }, 0);
+}
 
+function getVal(card, curTot, hand, isMin) {
+ if('string' === typeof card) {
+   if('A' === card) {
+     if(curTot + 11 > 21 || true === isMin) {
+       if(hand.indexOf('A') > -1) {
+         return getVal(card, curTot, hand, true);
+       }
+       return 1;
+     }
+     else {
+       return 11;
+     }
+   }
+   else {
+     return 10;
+   }
+ }
+ else {
+   return Number(card);
+  }
+}
 
 }
